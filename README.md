@@ -5,5 +5,5 @@ Trabalho apresentado à disciplina de Construção e Análise de Algoritmos do c
 Dhiego Cavalcanti da Silveira  
 João Pedro dos Santos Jacome da Silva  
 Luís Guilherme Ferreira da Costa  
-Maria Eduarda Araújo Sales  
+Maria Eduarda Araujo Sales  
 Victor Oliveira do Nascimento  
