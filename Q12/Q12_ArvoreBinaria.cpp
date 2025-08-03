@@ -7,82 +7,91 @@ using namespace std;
 class Node
 {
 private:
-    char value;
-    Node *left;
-    Node *right;
+    char valor;
+    Node *esquerda;
+    Node *direita;
 
 public:
-    Node(char value)
+    Node(char valor)
     {
-        this->value = value;
-        this->left = nullptr;
-        this->right = nullptr;
+        this->valor = valor;
+        this->esquerda = nullptr;
+        this->direita = nullptr;
     }
 
-    char getValue() { return this->value; }
-    Node *getLeft() { return this->left; }
-    Node *getRight() { return this->right; }
+    char getValor() { return this->valor; }
+    Node *getEsquerda() { return this->esquerda; }
+    Node *getDireita() { return this->direita; }
 
-    void setValue(char value) { this->value = value; }
-    void setLeft(Node *node) { this->left = node; }
-    void setRight(Node *node) { this->right = node; }
+    void setValor(char valor)
+    {
+        this->valor = valor;
+    }
+    void setEsquerda(Node *node)
+    {
+        this->esquerda = node;
+    }
+    void setDireita(Node *node)
+    {
+        this->direita = node;
+    }
 };
 
 class Tree
 {
 private:
-    Node *root;
+    Node *raiz;
 
-    Node *buildTreeFromArray(const vector<char> &arr, int index)
+    Node *construirArvoreArray(const vector<char> &arr, int i)
     {
-        if (index >= arr.size() || arr[index] == ' ')
+        if (i >= arr.size() || arr[i] == ' ')
         {
             return nullptr;
         }
 
-        Node *node = new Node(arr[index]);
-        node->setLeft(buildTreeFromArray(arr, 2 * index + 1));
-        node->setRight(buildTreeFromArray(arr, 2 * index + 2));
+        Node *node = new Node(arr[i]);
+        node->setEsquerda(construirArvoreArray(arr, 2 * i + 1));
+        node->setDireita(construirArvoreArray(arr, 2 * i + 2));
         return node;
     }
 
 public:
-    Tree() : root(nullptr) {}
+    Tree() : raiz(nullptr) {}
 
-    void buildFromArray(const vector<char> &arr)
+    void construirArvore(const vector<char> &arr)
     {
-        root = buildTreeFromArray(arr, 0);
+        raiz = construirArvoreArray(arr, 0);
     }
 
-    Node *getRoot() { return root; }
+    Node *getRaiz() { return raiz; }
 
-    void preorder(Node *current)
+    void preOrdem(Node *noAtual)
     {
-        if (current)
+        if (noAtual)
         {
-            cout << current->getValue() << " ";
-            preorder(current->getLeft());
-            preorder(current->getRight());
+            cout << noAtual->getValor() << " ";
+            preOrdem(noAtual->getEsquerda());
+            preOrdem(noAtual->getDireita());
         }
     }
 
-    void inorder(Node *current)
+    void emOrder(Node *noAtual)
     {
-        if (current)
+        if (noAtual)
         {
-            inorder(current->getLeft());
-            cout << current->getValue() << " ";
-            inorder(current->getRight());
+            emOrder(noAtual->getEsquerda());
+            cout << noAtual->getValor() << " ";
+            emOrder(noAtual->getDireita());
         }
     }
 
-    void postorder(Node *current)
+    void posOrdem(Node *noAtual)
     {
-        if (current)
+        if (noAtual)
         {
-            postorder(current->getLeft());
-            postorder(current->getRight());
-            cout << current->getValue() << " ";
+            posOrdem(noAtual->getEsquerda());
+            posOrdem(noAtual->getDireita());
+            cout << noAtual->getValor() << " ";
         }
     }
 };
@@ -90,29 +99,29 @@ public:
 int main()
 {
     vector<char> arr = {
-        'A', // 0
-        'B', // 1
-        'C', // 2
-        'D', // 3
-        'E', // 4
-        'F', // 5
-        'G', // 6
-        'H', // 7
-        'I', // 8
-        'J', // 9
-        'K', // 10
-        'L', // 11
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
     };
 
     Tree tree;
-    tree.buildFromArray(arr);
+    tree.construirArvore(arr);
 
     cout << "Pré-ordem: ";
-    tree.preorder(tree.getRoot());
+    tree.preOrdem(tree.getRaiz());
     cout << "\nEm ordem: ";
-    tree.inorder(tree.getRoot());
+    tree.emOrder(tree.getRaiz());
     cout << "\nPós-ordem: ";
-    tree.postorder(tree.getRoot());
+    tree.posOrdem(tree.getRaiz());
     cout << endl;
 
     return 0;
