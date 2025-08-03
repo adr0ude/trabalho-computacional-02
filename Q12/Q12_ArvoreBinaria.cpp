@@ -4,15 +4,15 @@
 
 using namespace std;
 
-class Node
+class No
 {
 private:
     char valor;
-    Node *esquerda;
-    Node *direita;
+    No *esquerda;
+    No *direita;
 
 public:
-    Node(char valor)
+    No(char valor)
     {
         this->valor = valor;
         this->esquerda = nullptr;
@@ -20,52 +20,52 @@ public:
     }
 
     char getValor() { return this->valor; }
-    Node *getEsquerda() { return this->esquerda; }
-    Node *getDireita() { return this->direita; }
+    No *getEsquerda() { return this->esquerda; }
+    No *getDireita() { return this->direita; }
 
     void setValor(char valor)
     {
         this->valor = valor;
     }
-    void setEsquerda(Node *node)
+    void setEsquerda(No *node)
     {
         this->esquerda = node;
     }
-    void setDireita(Node *node)
+    void setDireita(No *node)
     {
         this->direita = node;
     }
 };
 
-class Tree
+class Arvore
 {
 private:
-    Node *raiz;
+    No *raiz;
 
-    Node *construirArvoreArray(const vector<char> &arr, int i)
+    No *construirArvoreArray(const vector<char> &arr, int i)
     {
         if (i >= arr.size() || arr[i] == ' ')
         {
             return nullptr;
         }
 
-        Node *node = new Node(arr[i]);
-        node->setEsquerda(construirArvoreArray(arr, 2 * i + 1));
-        node->setDireita(construirArvoreArray(arr, 2 * i + 2));
-        return node;
+        No *no = new No(arr[i]);
+        no->setEsquerda(construirArvoreArray(arr, 2 * i + 1));
+        no->setDireita(construirArvoreArray(arr, 2 * i + 2));
+        return no;
     }
 
 public:
-    Tree() : raiz(nullptr) {}
+    Arvore() : raiz(nullptr) {}
 
     void construirArvore(const vector<char> &arr)
     {
         raiz = construirArvoreArray(arr, 0);
     }
 
-    Node *getRaiz() { return raiz; }
+    No *getRaiz() { return raiz; }
 
-    void preOrdem(Node *noAtual)
+    void preOrdem(No *noAtual)
     {
         if (noAtual)
         {
@@ -75,7 +75,7 @@ public:
         }
     }
 
-    void emOrder(Node *noAtual)
+    void emOrder(No *noAtual)
     {
         if (noAtual)
         {
@@ -85,7 +85,7 @@ public:
         }
     }
 
-    void posOrdem(Node *noAtual)
+    void posOrdem(No *noAtual)
     {
         if (noAtual)
         {
@@ -113,15 +113,15 @@ int main()
         'L',
     };
 
-    Tree tree;
-    tree.construirArvore(arr);
+    Arvore arvore;
+    arvore.construirArvore(arr);
 
     cout << "Pré-ordem: ";
-    tree.preOrdem(tree.getRaiz());
+    arvore.preOrdem(arvore.getRaiz());
     cout << "\nEm ordem: ";
-    tree.emOrder(tree.getRaiz());
+    arvore.emOrder(arvore.getRaiz());
     cout << "\nPós-ordem: ";
-    tree.posOrdem(tree.getRaiz());
+    arvore.posOrdem(arvore.getRaiz());
     cout << endl;
 
     return 0;
