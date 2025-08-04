@@ -127,8 +127,7 @@ plt.tight_layout()
 plt.show()
 
 # ---------- Comentários sobre os gráficos ----------
-print("\nComentários:")
-print("1. A busca linear e a com sentinela têm tempo proporcional a N;")
-print("2. As buscas binárias são muito mais rápidas com crescimento logarítmico;")
-print("3. Para vetores grandes, a ordenação para a busca binária compensa;")
+print("1. A busca linear e a com sentinela têm tempo proporcional a N.")
+print("2. As buscas binárias são muito mais rápidas com crescimento logarítmico.")
+print("3. Para vetores grandes, a ordenação para a busca binária compensa.")
 print("4. A busca com sentinela é levemente mais rápida que a linear padrão.")
